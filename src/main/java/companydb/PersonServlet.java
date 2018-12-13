@@ -16,9 +16,9 @@ public class PersonServlet extends HttpServlet {
             String login = request.getParameter("fullname");
             Connection conn = DriverManager
                     .getConnection("jdbc:derby://localhost:1527/companydb");
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("select * from APP.PERSON" +
-                    " from where FULL_NAME = " + login + "");
+           PreparedStatement stmt = conn.prepareStatement( "select * from APP.PERSONE where FULL_NAME = ?");
+          stmt.setString(1,login);
+          ResultSet rs = stmt.executeQuery();
             PrintWriter out = response.getWriter();
             while (rs.next()) {
                 long id = rs.getLong("ID");
@@ -37,3 +37,8 @@ public class PersonServlet extends HttpServlet {
             throws ServletException, IOException {
     }
 }
+
+
+
+//    ResultSet rs = stmt.executeQuery("select * from APP.PERSONE" +
+//            " where FULL_NAME = '" + login + "'");
