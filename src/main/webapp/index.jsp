@@ -12,5 +12,9 @@
 </head>
 <body>
 <h1>HELLO MY FRIEND</h1>
+<form action="persons" method="post">
+    <input type="text" name="fullname">
+    <button type="submit">GoData</button>
+</form>
 </body>
 </html>
